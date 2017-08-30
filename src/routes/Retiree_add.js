@@ -1,17 +1,17 @@
 import React from 'react';
 import { connect } from 'dva';
 import styles from './Retiree.css';
-import RetireeComponent from '../components/Retiree/Retiree';
+import Retiree_addComponent from '../components/Retiree/Retiree_add';
 import MainLayout from '../components/MainLayout/MainLayout';
 
-function Retiree({ location }) {
+function Retiree_add({ location }) {
   return (
     <MainLayout location={location}>
       <div className={styles.normal}>
-        <RetireeComponent />
+        <Retiree_addComponent />
       </div>
     </MainLayout>
   );
 }
 
-export default connect()(Retiree);
+export default connect()(Retiree_add);
