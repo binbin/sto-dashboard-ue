@@ -1,5 +1,7 @@
 import * as retireeService from '../services/retiree';
 
+import { routerRedux } from 'dva/router';
+
 
 export default {
   namespace: 'retiree',
@@ -12,6 +14,9 @@ export default {
     save(state, { payload: { data: list, total, page } }) {
       return { ...state, list, total, page };
     },
+    add_result(state,{}){
+      return {...state}
+    }
   },
   effects: {
     *fetch({ payload: { page = 1 } }, { call, put }) {
@@ -25,6 +30,15 @@ export default {
         },
       });
     },
+    *add({},{call,put}){
+      let {data,headers} = yield call(retireeService.add)
+      yield put(routerRedux.push({
+        pathname: '/retiree'
+      }))
+      // yield put({
+      //   type:'save'
+      // })
+    }
   },
   subscriptions: {
     setup({ dispatch, history }) {
